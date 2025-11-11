@@ -1,4 +1,5 @@
-## Foi realizada uma LEFT JOIN uma vez que nem toda lead se torna uma venda e é necessário manter as informações para analisar quais campanhas tiveram mais sucesso baseadas no número de vendas.
+## Foi realizada uma LEFT JOIN uma vez que nem toda lead se torna uma venda e é necessário manter as informações para analisar 
+quais campanhas tiveram mais sucesso baseadas no número de vendas.
 
 SELECT 
   date_venda,
@@ -16,7 +17,10 @@ AND l.source <> v.source
 OR l.term <> v.term
 OR l.campaign <> v.campaign;
 
-## Existem algumas linhas nas quais as colunas possuem informações divergentes entre as tabelas leads e vendas. Caso seja um comportamento esperado, a tabela não precisa ser corrigida, porém caso isso represente um erro na coleta de dados é necessário verificar o que está ocorrendo. Apesar de ter sido verificado na análise, não fiz alterações nos nomes dos dados, mesmo que alguns fossem muito semelhantes, por não ter conhecimento acerca do funcionamento da empresa e a alteração desses dados sem consultar as regras de negócio poderia causar mais problemas.
+## Existem algumas linhas nas quais as colunas possuem informações divergentes entre as tabelas leads e vendas. Caso seja um comportamento esperado, 
+a tabela não precisa ser corrigida, porém caso isso represente um erro na coleta de dados é necessário verificar o que está ocorrendo. Apesar de ter sido 
+verificado na análise, não fiz alterações nos nomes dos dados, mesmo que alguns fossem muito semelhantes, por não ter conhecimento acerca do 
+funcionamento da empresa e a alteração desses dados sem consultar as regras de negócio poderia causar mais problemas.
 
 SELECT 
   date_lead, 
@@ -30,11 +34,13 @@ ON l.email = v.email
 WHERE l.medium = 'cpc'
 AND date_venda IS NOT NULL;
 
-## Partindo do princípio que a data da tabela lead é a data na qual o usuário se tornou um lead e a data da tabela vendas é a data que a venda foi consolidada e o lead tornou-se cliente, 
-existem apenas 16 compras com origem de medium CPC de um universo de 227 leads provenientes desse medium, correspondente a uma taxa de conversão de 7%.
+## Partindo do princípio que a data da tabela lead é a data na qual o usuário se tornou um lead e a data da tabela vendas é a data que a venda foi consolidada 
+e o lead tornou-se cliente, existem apenas 16 compras com origem de medium CPC de um universo de 227 leads provenientes desse medium, 
+correspondente a uma taxa de conversão de 7%.
 
-## As datas de venda se concentram nos dias 2025-09-20 e 2025-09-21, havendo vendas realizadas antes da data de lead para um mesmo e-mail. Os dados de date_lead podem estar se sobrepondo para e-mails repetidos, 
-  considerando a possibilidade de acesso por meio de diferentes campanhas por um mesmo usuário, mas pode ser apenas o material disponibilizado para o teste.
+## As datas de venda se concentram nos dias 2025-09-20 e 2025-09-21, havendo vendas realizadas antes da data de lead para um mesmo e-mail. 
+Os dados de date_lead podem estar se sobrepondo para e-mails repetidos, considerando a possibilidade de acesso por meio de diferentes campanhas 
+por um mesmo usuário, mas pode ser apenas o material disponibilizado para o teste.
 
 SELECT 
   date_lead, 
