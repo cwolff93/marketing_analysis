@@ -10,7 +10,9 @@ This project sought to understand which campaigns and sources had the most succe
 Main objectives:
 
 1️⃣ Find the overall conversion rate for the campaigns.
+
 2️⃣ Find the most frequent source and the conversion rates for the sources.
+
 3️⃣ Extract actionable insights to improve sales through analysis of successful campaigns.
 
 # ACTIONS 
